@@ -50,11 +50,11 @@
             const reposTableBody = document.querySelector('#table tbody');
             const errorMessage = document.getElementById('error-message');
 
-            // Validar que se haya ingresado un nombre de usuario
+            
             if (username) {
                 const apiUrl = `https://api.github.com/users/${username}/repos`;
 
-                // Realizar la petición a la API de GitHub
+                
                 fetch(apiUrl)
                     .then(response => {
                         if (!response.ok) {
@@ -64,9 +64,9 @@
                     })
                     .then(data => {
                         reposTableBody.innerHTML = '';  // Limpiar tabla
-                        errorMessage.style.display = 'none';  // Esconder mensaje de error
+                        errorMessage.style.display = 'none';  
 
-                        // Insertar los repositorios en la tabla
+                       
                         data.forEach(repo => {
                             const row = `<tr>
                                             <td><a href="${repo.html_url}" target="_blank">${repo.name}</a></td>
@@ -76,7 +76,7 @@
                             reposTableBody.insertAdjacentHTML('beforeend', row);
                         });
 
-                        // Si el usuario no tiene repositorios
+                        
                         if (data.length === 0) {
                             reposTableBody.innerHTML = '<tr><td colspan="3" class="text-center">No hay repositorios disponibles</td></tr>';
                         }
